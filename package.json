@@ -1,0 +1,69 @@
+{
+  "name": "ue-lib",
+  "private": true,
+  "version": "0.0.2",
+  "description": "Collection of utils and components.",
+  "license": "MIT",
+  "author": "Willi Woldt",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=6.32.2"
+  },
+  "scripts": {
+    "dev": "start-storybook -p 6006 --ci",
+    "dev:all": "pnpm -r dev --parallel",
+    "build-storybook": "build-storybook",
+    "build": "pnpm -r --filter ./packages run build",
+    "test": "pnpm -r test run",
+    "lint": "pnpm eslint '**/*.{js,ts,tsx,json}'",
+    "lint:fix": "pnpm eslint '**/*.{js,ts,tsx,json}' --fix",
+    "publish:ci": "pnpm -r --filter ./packages publish --access public --no-git-checks",
+    "release": "pnpm bumpp package.json packages/*/package.json --commit --tag --push"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.18.3",
+    "@storybook/addon-actions": "^6.4.18",
+    "@storybook/addon-essentials": "^6.4.18",
+    "@storybook/addon-links": "^6.4.18",
+    "@storybook/web-components": "^6.4.19",
+    "@types/node": "^17.0.21",
+    "autoprefixer": "^10.4.2",
+    "bumpp": "^7.1.1",
+    "color": "^4.2.0",
+    "cssnano": "^5.1.1",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "happy-dom": "^2.46.3",
+    "lit-html": "^2.2.0",
+    "postcss": "^8.4.8",
+    "postcss-nested": "^5.0.6",
+    "rimraf": "^3.0.2",
+    "storybook-builder-vite": "^0.1.18",
+    "typescript": "^4.6.2",
+    "vite": "^2.8.6",
+    "vitest": "^0.6.0",
+    "web-component-analyzer": "^1.1.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@antfu",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "endOfLine": "auto",
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120
+  },
+  "browserslist": [
+    "last 2 Chrome  versions",
+    "last 2 and_chr versions",
+    "last 2 ff versions",
+    "last 2 and_ff versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions",
+    "last 2 ios_saf versions"
+  ]
+}

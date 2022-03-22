@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "./dist",
+    // "composite": true
+    // "paths": {
+    //   "@ueberbit/utils": ["../utils/src/index.ts"]
+    // }
+  },
+  // "references": [
+  //   {
+  //     "path": "../utils/tsconfig.json"
+  //   }
+  // ],
+  "include": [
+    "../../globals.d.ts",
+    "./src"
+  ],
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@ueberbit/custom-elements",
+  "version": "0.0.1",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "prepublishOnly": "pnpm build",
+    "cem": "cem analyze --globs \"src/**/*.tsx\" --exclude \"**/*.stories.tsx\" --outdir dist",
+    "dev": "cem analyze --globs \"src/**/*.tsx\" --exclude \"**/*.stories.tsx\" --outdir dist --watch",
+    "vscode": "pnpm wca \"./src/**/*.tsx\" --outFiles dist/vscode.html-custom-data.json --format vscode"
+  },
+  "dependencies": {
+    "@ueberbit/utilities": "workspace:*"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.5.7"
+  },
+  "customElements": "dist/custom-elements.json"
+}

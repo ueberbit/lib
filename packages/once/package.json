@@ -1,0 +1,30 @@
+{
+  "name": "@ueberbit/once",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Willi Woldt <willi.woldt@ueberbit.de>",
+  "homepage": "",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "vite build && tsc --declaration --emitDeclarationOnly",
+    "serve": "vite preview",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "types": "dist/index.d.ts"
+}

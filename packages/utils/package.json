@@ -1,0 +1,21 @@
+{
+  "name": "@ueberbit/utilities",
+  "version": "0.0.1",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "prepublishOnly": "pnpm build"
+  },
+  "types": "dist/index.d.ts"
+}

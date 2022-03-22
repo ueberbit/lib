@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "useDefineForClassFields": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable"
+    ],
+    "jsx": "preserve",
+    "jsxFactory": "JSX.createElement",
+    "jsxFragmentFactory": "JSX.Fragment",
+    "declaration": true,
+    "declarationDir": "./dist"
+  },
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/*.jsx"
+  ],
+  // "references": [
+  //   { "path": "./packages/custom-elements" },
+  //   { "path": "./packages/utils" },
+  // ]
+}
