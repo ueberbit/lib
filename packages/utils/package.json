@@ -1,6 +1,6 @@
 {
   "name": "@ueberbit/utilities",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "MIT",
   "files": [
     "dist"
