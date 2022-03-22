@@ -46,8 +46,8 @@ export const remove = (
 ): Array<Element> => {
   return Array.from(context.querySelectorAll(selector)).filter(
     (element: Element) => {
-      if ((ONCE_PROP in element)) return false
-      if (element[ONCE_PROP].size === 1) {
+      if (!(ONCE_PROP in element)) return false
+      if (element[ONCE_PROP]!.size === 1) {
         delete element[ONCE_PROP]
       } else {
         element[ONCE_PROP].delete(key)
@@ -68,8 +68,8 @@ export const find = (
   key: string = DEFAULT_KEY
 ): Array<Element> => {
   return Array.from(context.querySelectorAll('*')).filter((element: Element) => {
-    if ((ONCE_PROP in element)) return false
-    if (element[ONCE_PROP].has(key)) return false
+    if (!(ONCE_PROP in element)) return false
+    if (!element[ONCE_PROP]!.has(key)) return false
     return true
   })
 }
