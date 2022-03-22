@@ -20,6 +20,9 @@
     "publish:ci": "pnpm -r --filter ./packages publish --access public --no-git-checks",
     "release": "pnpm bumpp package.json packages/*/package.json --commit --tag --push"
   },
+  "publishConfig": {
+    "@ueberbit:registry": "https://npm.pkg.github.com"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.3",
     "@storybook/addon-actions": "^6.4.18",
