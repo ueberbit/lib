@@ -62,11 +62,13 @@ rimraf.sync(`${path.resolve(__dirname, './dist/')}/*`)
     tsconfig: 'tsconfig.json',
     plugins: [
       {
-        name: 'example',
+        name: 'css-to-js',
         setup(build) {
           build.onLoad({ filter: /\.tsx?$/ }, async (args) => {
             let text = await fs.promises.readFile(args.path, 'utf8')
             text = text.replace('.styles.css', '.styles.js')
+            text = `import { JSX } from '@ueberbit/utilities'
+            ${text}`
             return {
               contents: text,
               loader: 'tsx',
