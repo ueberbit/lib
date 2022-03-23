@@ -33,50 +33,6 @@ rimraf.sync(`${path.resolve(__dirname, './dist/')}/*`)
   }
 })()
 
-// ;(async () => {
-//   await build({
-//     esbuild: {
-//       jsxInject: `import { JSX } from '@ueberbit/utils'`,
-//       jsxFactory: 'JSX.createElement',
-//       jsxFragment: 'JSX.Fragment',
-//     },
-//     plugins: [
-//       {
-//         apply: 'build',
-//         enforce: 'post',
-//         name: 'prevent-css-emit',
-//         generateBundle(_opts, bundle) {
-//           for (const key in bundle) {
-//             if (bundle[key]) {
-//               const chunk = bundle[key]
-//               if (chunk.type === 'asset' && chunk.fileName.includes('.css')) {
-//                 delete bundle[key]
-//               }
-//             }
-//           }
-//         },
-//       },
-//     ],
-//     build: {
-//       target: 'esnext',
-//       minify: false,
-//       emptyOutDir: false,
-//       rollupOptions: {
-//         input: {
-//           DetailsItem: path.resolve(__dirname, 'src/details/DetailsItem.tsx'),
-//           DetailsGroup: path.resolve(__dirname, 'src/details/DetailsGroup.tsx'),
-//         },
-//         external: ['@ueberbit/utils'],
-//         output: {
-//           entryFileNames: `[name].js`,
-//           chunkFileNames: `[name].js`,
-//           assetFileNames: `[name].[ext]`,
-//         },
-//       },
-//     }
-//   })
-// })()
-
 /**
  * Build Css.
  */
@@ -110,7 +66,7 @@ rimraf.sync(`${path.resolve(__dirname, './dist/')}/*`)
         setup(build) {
           build.onLoad({ filter: /\.tsx?$/ }, async (args) => {
             let text = await fs.promises.readFile(args.path, 'utf8')
-            text = text.replace('.css', '.styles.js')
+            text = text.replace('.styles.css', '.styles.js')
             return {
               contents: text,
               loader: 'tsx',
@@ -121,24 +77,3 @@ rimraf.sync(`${path.resolve(__dirname, './dist/')}/*`)
     ],
   })
 })()
-
-/**
- * Index.
- */
-//  ;(async () => {
-//   await esbuild({
-//     entryPoints: {
-//       index: path.resolve(__dirname, './src/index.ts/')
-//     },
-//     outdir: path.resolve(__dirname, 'dist'),
-//     tsconfig: '../../tsconfig.json',
-//     format: 'esm',
-//   })
-// })()
-
-// ;(async() => {
-//   const files = await fg('../../dist/custom-elements/src/**/*.d.ts', { })
-//   files.forEach(file => {
-//     fs.promises.copyFile(file, `dist/${path.basename(file)}`)
-//   })
-// })()
