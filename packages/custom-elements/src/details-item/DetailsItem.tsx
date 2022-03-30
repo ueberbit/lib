@@ -3,6 +3,7 @@ import {
   animateTo,
   animations,
   classMap,
+  createRef,
   emit,
   reflectProp,
   setBooleanAttr,
@@ -29,10 +30,9 @@ import styles from './DetailsItem.styles.css'
 export class DetailsItem extends CE {
   open = false
   disabled = false
-
-  #base: HTMLElement
-  #header: HTMLElement
-  #body: HTMLElement
+  #base = createRef()
+  #header = createRef()
+  #body = createRef()
   #hasIcon = false
 
   static styles = styles
@@ -45,21 +45,10 @@ export class DetailsItem extends CE {
 
     this.#hasIcon = !!this.querySelectorAll('[slot=icon]').length
   }
-  
-  connectedCallback() {
-    super.connectedCallback()
-
-    this.#base = this.query('[part=base]')
-    this.#header = this.query('[part=summary]')
-    this.#body = this.query('[part=body]')
-
-    this.#header.addEventListener('click', () => this.handleClick())
-    this.#header.addEventListener('keyup', (e) => this.handleKeyDown(e))
-  }
 
   disconnectedCallback() {
-    this.#header.removeEventListener('click', this.handleClick)
-    this.#header.removeEventListener('keydown', this.handleKeyDown)
+    this.#header.current.removeEventListener('click', this.handleClick)
+    this.#header.current.removeEventListener('keydown', this.handleKeyDown)
   }
 
   static get observedAttributes() {
@@ -74,16 +63,19 @@ export class DetailsItem extends CE {
 
   render() {
     return (
-      <div part="base" open={this.open ? 'true' : 'false'}>
+      <div part="base" ref={this.#base} open={this.open ? 'true' : 'false'} >
         <header
           aria-controls="content"
           aria-expanded={this.open ? 'true' : 'false'}
           part="summary"
           tabIndex={0}
           role="button"
+          ref={this.#header}
           className={classMap({
             'has-icon': this.#hasIcon
           })}
+          onClick={() => this.handleClick()} 
+          onKeyUp={(e) => this.handleKeyDown(e as any)}
         >
           <slot name="summary"></slot>
           {this.#hasIcon ? 
@@ -92,7 +84,7 @@ export class DetailsItem extends CE {
             </div> : <></>
           }
         </header>
-        <div part="body">
+        <div part="body" ref={this.#body}>
           <div part="content">
             <slot></slot>
           </div>
@@ -102,14 +94,14 @@ export class DetailsItem extends CE {
   }
 
   update() {
-    setBooleanAttr(this.#base, 'open', this.open)
-    setBooleanAttr(this.#header, 'aria-expanded', this.open)
+    setBooleanAttr(this.#base.current, 'open', this.open)
+    setBooleanAttr(this.#header.current, 'aria-expanded', this.open)
   }
 
   handleClick() {
     if (this.disabled) return
     this.open ? this.hide() : this.show()
-    this.#header.focus()
+    this.#header.current.focus()
   }
 
   handleKeyDown(e: KeyboardEvent) {
@@ -151,36 +143,36 @@ export class DetailsItem extends CE {
       // Show
       emit(this, 'details-show')
 
-      await stopAnimations(this.#body)
+      await stopAnimations(this.#body.current)
 
-      this.#body.hidden = false
+      this.#body.current.hidden = false
       this.update()
 
       const { keyframes, options } = animations.show
       await animateTo(
-        this.#body,
-        shimKeyframesHeightAuto(keyframes, this.#body.scrollHeight),
+        this.#body.current,
+        shimKeyframesHeightAuto(keyframes, this.#body.current.scrollHeight),
         options
       )
-      this.#body.style.height = 'auto'
+      this.#body.current.style.height = 'auto'
 
       emit(this, 'details-after-show')
     } else {
       // Hide
       emit(this, 'details-hide')
 
-      await stopAnimations(this.#body)
+      await stopAnimations(this.#body.current)
 
       this.update()
 
       const { keyframes, options } = animations.hide
       await animateTo(
-        this.#body,
-        shimKeyframesHeightAuto(keyframes, this.#body.scrollHeight),
+        this.#body.current,
+        shimKeyframesHeightAuto(keyframes, this.#body.current.scrollHeight),
         options
       )
-      this.#body.hidden = true
-      this.#body.style.height = 'auto'
+      this.#body.current.hidden = true
+      this.#body.current.style.height = 'auto'
 
       emit(this, 'details-after-hide')
     }

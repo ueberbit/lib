@@ -34,6 +34,7 @@ declare global {
   }
 }
 ```
+Make sure to call `super.connectedCallback()` when overriding `connectedCallback()`, since `render()` is called inside it.
 
 <Heading>Styling</Heading>
 Styles from the static styles prop are applied to the custom Element. If supported adopted Stylesheets are used. Otherwise

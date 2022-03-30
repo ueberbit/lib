@@ -1,4 +1,4 @@
-import { JSX } from './index'
+import { JSX, hyphenate } from './index'
 
 /**
  * Waits for a specific event to be emitted from an element. Ignores events that bubble up from child elements.
@@ -32,20 +32,20 @@ export function emit(el: HTMLElement, name: string, options?: CustomEventInit) {
 }
 
 /**
- * @todo Convert prop name to dash case.
  * Reflect prop as attribute.
  * @param target
  * @param propKey
  */
 export const reflectProp = (target: HTMLElement | any, propKey: PropertyKey) => {
   // Boolean.
+  const attr = hyphenate(propKey)
   if (typeof target[propKey] === 'boolean') {
     Object.defineProperty(target, propKey, {
       get() {
-        return target.hasAttribute(propKey)
+        return target.hasAttribute(attr)
       },
       set(v) {
-        v ? target.setAttribute(propKey, '') : target.removeAttribute(propKey)
+        v ? target.setAttribute(attr, '') : target.removeAttribute(attr)
       },
     })
   }
@@ -54,10 +54,10 @@ export const reflectProp = (target: HTMLElement | any, propKey: PropertyKey) => 
   if (typeof target[propKey] === 'string') {
     Object.defineProperty(target, propKey, {
       get() {
-        return target.getAttribute(propKey) || undefined
+        return target.getAttribute(attr) || undefined
       },
       set(v) {
-        target.setAttribute(propKey, v)
+        target.setAttribute(attr, v)
       },
     })
   }
@@ -66,10 +66,10 @@ export const reflectProp = (target: HTMLElement | any, propKey: PropertyKey) => 
   if (typeof target[propKey] === 'number') {
     Object.defineProperty(target, propKey, {
       get() {
-        return +target.getAttribute(propKey) || undefined
+        return +target.getAttribute(attr) || undefined
       },
       set(v) {
-        target.setAttribute(propKey, v)
+        target.setAttribute(attr, v)
       },
     })
   }
@@ -144,9 +144,11 @@ export const adoptStyles = (renderRoot: ShadowRoot | HTMLElement | Document, sty
  * @param classInfo
  * @returns Class list
  */
-export const classMap = (classInfo: Record<string, string | boolean | number>): string =>
+export const classMap = (classInfo: Record<string, string | boolean | number>): string => {
+  const classes = [...new Set(Object.keys(classInfo).filter((key) => classInfo[key]))].join(' ')
   // eslint-disable-next-line prefer-template
-  ' ' + [...new Set(Object.keys(classInfo).filter((key) => classInfo[key]))].join(' ') + ''
+  return classes ? ' ' + classes + ' ' : ''
+}
 
 /**
  * Custom Base Element.
@@ -189,7 +191,7 @@ export abstract class CE extends HTMLElement {
     ])
   }
 
-  abstract render(): any
+  render(): any {}
 }
 
 declare global {

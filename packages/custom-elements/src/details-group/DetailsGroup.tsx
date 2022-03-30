@@ -11,7 +11,6 @@ export class DetailsGroup extends CE {
   constructor() {
     super()
     reflectProp(this, 'multi')
-    // this.adoptStyles([styles])
   }
 
   render() {
