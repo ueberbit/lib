@@ -9,6 +9,7 @@ module.exports = {
   framework: '@storybook/web-components',
   core: { builder: 'storybook-builder-vite' },
   async viteFinal(config) {
+    config.base = './'
     config.esbuild = {
       jsxInject: `import { JSX } from '@ueberbit/utilities'`
     }
