@@ -31,6 +31,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           pnpm i
+          pnpm build
           pnpm build:sb
 
       - name: Deploy Storybook 🚀
