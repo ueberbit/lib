@@ -19,7 +19,8 @@
   "module": "dist/index.js",
   "scripts": {
     "build": "node ./scripts/build.mjs",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "test": "vitest --environment happy-dom"
   },
   "types": "dist/index.d.ts"
 }

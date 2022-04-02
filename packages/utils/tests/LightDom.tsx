@@ -1,10 +1,12 @@
-import { CE } from '@ueberbit/utilities'
+import { CE } from '../src'
 
 // @todo move this to test.
 export class LightDom extends CE {
   static styles = `
     light-dom {
-      font-size: 3rem;
+      display: block;
+      width: 50px;
+      height: 50px;
     }
   `
 
@@ -14,9 +16,7 @@ export class LightDom extends CE {
 
   render() {
     return (
-      <div>
-        <h1>hi</h1>
-      </div>
+      <div>This is in LightDom</div>
     )
   }
 

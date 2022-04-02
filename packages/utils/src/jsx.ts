@@ -17,6 +17,33 @@ const jsxAttr = cached((attr: string): string => {
 })
 
 /**
+ * Split attributes and dataset.
+ * @param attrs 
+ * @returns 
+ */
+const parseAttr = (attrs) => {
+  const attributes = Object.keys(attrs).reduce((acc,cur) => {
+    if(cur.match(/^data-/)) return acc
+    return {
+      ...acc,
+      [jsxAttr(cur)]: attrs[cur]
+    }
+  }, {})
+
+  const dataset = Object.keys(attrs).filter((key) => key.match(/^data-/)).reduce((acc,cur) => {
+    return {
+      ...acc,
+      [cur.replace('data-', '')]: attrs[cur]
+    }
+  }, {})
+
+  return {
+    attributes,
+    dataset
+  }
+}
+
+/**
  * Preact like ref implementation.
  * @returns 
  */
@@ -29,23 +56,27 @@ export const JSX = {
   Fragment: 'fragment',
   createElement(tagName: string, attrs: attributes = {}, ...children: Array<HTMLElement>) {
     if (tagName === 'fragment') return children
+    const { attributes, dataset } = parseAttr(attrs ?? {})
     const elem = Object.assign(
       document.createElement(tagName),
-      Object.keys(attrs ?? {}).reduce((acc, cur) => {
-        return {
-          ...acc,
-          [jsxAttr(cur)]: attrs[cur],
-        }
-      }, {})
+      attributes
     )
+    
+    // Datasets.
+    Object.entries(dataset).forEach(([key, val]: [string, string]) => elem.dataset[key] = val)
+    
+    // Refs.
     if(attrs && 'ref' in attrs) {
       attrs.ref.current = elem
     }
     for (const child of children) {
-      if (Array.isArray(child)) elem.append(...child)
+      if (Array.isArray(child)) {
+        elem.append(...child)
+        continue
+      }
       // If child is falsy continue. E.g. for 3>4 && <div>hi</div>
       if (!child) continue
-      else elem.append(child)
+      elem.append(child)
     }
     return elem
   },
