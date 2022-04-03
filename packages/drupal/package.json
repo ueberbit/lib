@@ -1,0 +1,25 @@
+{
+  "name": "@ueberbit/drupal",
+  "version": "0.0.4",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ueberbit/lib.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./local-tasks.css": {
+      "import": "./dist/local-tasks/local-tasks.css"
+    },
+    "./status-messages.css": {
+      "import": "./dist/status-messages/status-messages.css"
+    }
+  },
+  "types": "dist/@types/drupal.d.ts",
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "prepublishOnly": "pnpm build"
+  }
+}

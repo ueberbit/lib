@@ -6,6 +6,11 @@ import './DetailsItem.tsx'
 export default {
   title: 'Custom Elements/Details Item',
   component: 'details-item',
+  parameters: {
+    actions: {
+      handles: ['click details-item', 'keydown details-item'],
+    },
+  },
 }
 
 const Template = (args) => html`

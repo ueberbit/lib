@@ -1,0 +1,24 @@
+{
+  "name": "@ueberbit/drupal",
+  "version": "0.0.4",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ueberbit/lib.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./rating.css": {
+      "import": "./dist/rating/rating.css"
+    },
+    "./toggle.css": {
+      "import": "./dist/toggle/toggle.css"
+    }
+  },
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "prepublishOnly": "pnpm build"
+  }
+}

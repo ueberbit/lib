@@ -37,6 +37,7 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "happy-dom": "^2.55.0",
+    "lit": "^2.2.1",
     "lit-html": "^2.2.0",
     "postcss": "^8.4.12",
     "postcss-nested": "^5.0.6",
