@@ -19,7 +19,7 @@ export class DetailsGroup extends CE {
  
   connectedCallback() {
     super.connectedCallback()
-    this.#details = Array.from(this.querySelectorAll('details-item, details'))
+    this.#details = Array.from(this.children) as DetailsItem[]
     this.addEventListener('details-show', (e) => this.handleDetailsChange(e))
   }
 
@@ -29,6 +29,7 @@ export class DetailsGroup extends CE {
 
   handleDetailsChange(e: Event) {
     if (this.multi) return
+    if (!this.#details.find(el => el === e.target)) return
     this.#details.forEach(
       (detail) => detail !== e.target && detail.hide()
     )

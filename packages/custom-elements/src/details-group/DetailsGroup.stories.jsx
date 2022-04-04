@@ -37,3 +37,37 @@ export const DetailsGroup = Template.bind({})
 DetailsGroup.args = {
   multi: false,
 }
+
+export const Nested = () => html`
+  <details-group>
+    <details-item>
+      <div slot="summary">This is the summary</div>
+      <details-group>
+        <details-item>
+          <div slot="summary">This is the summary</div>
+          More info about the details.
+        </details-item>
+        <details-item>
+          <div slot="summary">This is the summary</div>
+          More info about the details. More info about the details. More info about
+          the details. More info about the details. More info about the details.
+          More info about the details.
+        </details-item>
+        <details-item>
+          <div slot="summary">This is the summary</div>
+          More info about the details.
+        </details-item>
+      </details-group>
+    </details-item>
+    <details-item>
+      <div slot="summary">This is the summary</div>
+      More info about the details. More info about the details. More info about
+      the details. More info about the details. More info about the details.
+      More info about the details.
+    </details-item>
+    <details-item>
+      <div slot="summary">This is the summary</div>
+      More info about the details.
+    </details-item>
+  </details-group>
+`
