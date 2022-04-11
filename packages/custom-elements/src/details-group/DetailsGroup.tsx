@@ -19,7 +19,7 @@ export class DetailsGroup extends CE {
  
   connectedCallback() {
     super.connectedCallback()
-    this.#details = Array.from(this.children) as DetailsItem[]
+    this.#details = Array.from(this.children).filter(item => item.tagName === 'DETAILS-ITEM') as DetailsItem[]
     this.addEventListener('details-show', (e) => this.handleDetailsChange(e))
   }
 
