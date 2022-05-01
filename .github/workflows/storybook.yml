@@ -22,17 +22,17 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
-      
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
           registry-url: https://registry.npmjs.org/
           cache: pnpm
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.1.0
-        with:
-          version: latest
 
       - name: Install and Build 🔧
         run: |
