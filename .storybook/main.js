@@ -7,7 +7,7 @@ module.exports = {
   ],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: '@storybook/web-components',
-  core: { builder: 'storybook-builder-vite' },
+  core: { builder: '@storybook/builder-vite' },
   async viteFinal(config) {
     config.base = './'
     config.esbuild = {
