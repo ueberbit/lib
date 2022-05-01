@@ -10,7 +10,7 @@
     "pnpm": ">=6.32.2"
   },
   "scripts": {
-    "dev:sb": "start-storybook -p 6006 --ci",
+    "dev:sb": "start-storybook -p 6006 --ci -h localhost",
     "dev": "pnpm -r dev --parallel",
     "build:sb": "build-storybook -o dist",
     "build": "pnpm -r --filter ./packages run build",
