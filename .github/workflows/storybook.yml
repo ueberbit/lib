@@ -1,12 +1,8 @@
 name: Build GH Page
 on:
   push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
+    tags:
+      - "v*"
 
 jobs:
   storybook:
@@ -26,7 +22,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: latest
+          version: 6
 
       - uses: actions/setup-node@v3
         with:
