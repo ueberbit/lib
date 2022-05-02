@@ -82,7 +82,12 @@ export const reflectProp = (target: HTMLElement | any, propKey: PropertyKey) => 
  * @param val
  */
 export const setBooleanAttr = (el: HTMLElement, key: string, val: boolean) => {
-  val ? el.setAttribute(key, '') : el.removeAttribute(key)
+  // Aria Attributes always need to have a value.
+  if(key.match(/^aria-/)) {
+    el.setAttribute(key, val.toString())
+  } else {
+    val ? el.setAttribute(key, '') : el.removeAttribute(key)
+  }
 }
 
 export const baseStyles = `

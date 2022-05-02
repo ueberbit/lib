@@ -68,7 +68,7 @@ const parseAttr = (el, attrs) => {
       props[jsxProp] = attrs[cur]
       return acc
     }
-    if(attrs[cur] === 'false' || !attrs[cur]) {
+    if(!cur.match(/^aria-/) && (attrs[cur] === 'false' || !attrs[cur])) {
       return acc
     }
     return {
