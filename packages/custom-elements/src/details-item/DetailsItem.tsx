@@ -85,7 +85,7 @@ export class DetailsItem extends CE {
           }
         </header>
         <div part="body" ref={this.#body}>
-          <div part="content">
+          <div part="content" id="content">
             <slot></slot>
           </div>
         </div>
