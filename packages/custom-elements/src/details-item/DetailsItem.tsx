@@ -56,6 +56,7 @@ export class DetailsItem extends CE {
   }
 
   attributeChangedCallback(attrName: string) {
+    if(!this.isConnected) return
     if (attrName === 'open') {
       this.handleOpenChange()
     }

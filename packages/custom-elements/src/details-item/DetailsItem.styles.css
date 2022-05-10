@@ -39,6 +39,10 @@
   & [part='summary']::after, & [part="icon"] {
     transform: rotate(180deg);
   }
+
+  & [part='body'] {
+    height: auto;
+  }
 }
 
 :where([part='body']) {

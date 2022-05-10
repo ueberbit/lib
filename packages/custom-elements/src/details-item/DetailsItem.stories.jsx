@@ -14,7 +14,7 @@ export default {
 }
 
 const Template = (args) => html`
-  <details-item ${attr(args)}>
+  <details-item ${attr(args)} >
     <div slot="summary">This is the summary</div>
     More info about the details.
   </details-item>
