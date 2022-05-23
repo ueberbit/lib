@@ -3,28 +3,28 @@
   "version": "0.0.13",
   "description": "> TODO: description",
   "license": "MIT",
+  "author": "Willi Woldt <willi.woldt@ueberbit.de>",
   "repository": {
     "type": "git",
     "url": "git@github.com:ueberbit/lib.git"
   },
-  "author": "Willi Woldt <willi.woldt@ueberbit.de>",
   "homepage": "",
-  "files": [
-    "dist"
-  ],
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./index.js"
     },
     "./*": "./*"
   },
-  "main": "dist/index.es.js",
-  "module": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && tsc --declaration --emitDeclarationOnly",
     "serve": "vite preview",
     "test": "vitest",
     "prepublishOnly": "pnpm build"
-  },
-  "types": "dist/index.d.ts"
+  }
 }

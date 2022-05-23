@@ -1,7 +1,7 @@
 {
   "name": "ue-lib",
-  "private": true,
   "version": "0.0.13",
+  "private": true,
   "description": "Collection of utils and components.",
   "license": "MIT",
   "author": "Willi Woldt",

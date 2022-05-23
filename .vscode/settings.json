@@ -10,5 +10,5 @@
   },
   "html.customData": [
     "./packages/custom-elements/dist/vscode.html-custom-data.json"
-  ],
+  ]
 }

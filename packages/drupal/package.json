@@ -6,9 +6,7 @@
     "type": "git",
     "url": "git@github.com:ueberbit/lib.git"
   },
-  "files": [
-    "dist"
-  ],
+  "types": "dist/@types/drupal.d.ts",
   "exports": {
     "./local-tasks.css": {
       "import": "./dist/local-tasks/local-tasks.css"
@@ -17,7 +15,9 @@
       "import": "./dist/status-messages/status-messages.css"
     }
   },
-  "types": "dist/@types/drupal.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node ./scripts/build.mjs",
     "prepublishOnly": "pnpm build"

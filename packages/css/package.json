@@ -6,9 +6,6 @@
     "type": "git",
     "url": "git@github.com:ueberbit/lib.git"
   },
-  "files": [
-    "dist"
-  ],
   "exports": {
     "./rating.css": {
       "import": "./dist/rating/rating.css"
@@ -17,6 +14,9 @@
       "import": "./dist/toggle/toggle.css"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node ./scripts/build.mjs",
     "prepublishOnly": "pnpm build"

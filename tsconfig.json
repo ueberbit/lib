@@ -24,7 +24,7 @@
     "**/dist/**",
     "**/node_modules/**",
     "**/*.jsx"
-  ],
+  ]
   // "references": [
   //   { "path": "./packages/custom-elements" },
   //   { "path": "./packages/utils" },

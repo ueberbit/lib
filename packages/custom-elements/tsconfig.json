@@ -2,10 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "declarationDir": "./dist",
+    "declarationDir": "./dist"
   },
   "include": [
     "../../globals.d.ts",
     "./src"
-  ],
+  ]
 }
