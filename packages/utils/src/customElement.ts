@@ -160,6 +160,7 @@ export const classMap = (classInfo: Record<string, string | boolean | number>): 
  */
 export abstract class CE extends HTMLElement {
   readonly renderRoot: ShadowRoot | HTMLElement
+  connected = false
 
   static styles?
 
@@ -171,6 +172,7 @@ export abstract class CE extends HTMLElement {
 
   connectedCallback() {
     JSX.append(this.render(), this.renderRoot)
+    this.connected = true
   }
 
   createRenderRoot(): ShadowRoot | HTMLElement {
