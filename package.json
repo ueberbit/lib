@@ -7,17 +7,17 @@
   "author": "Willi Woldt",
   "engines": {
     "node": ">=16",
-    "pnpm": ">=6.32.2"
+    "pnpm": ">=7.1.0"
   },
   "scripts": {
     "dev:sb": "start-storybook -p 6006 --ci -h localhost",
     "dev": "pnpm -r dev --parallel",
     "build:sb": "build-storybook -o dist",
-    "build": "pnpm -r --filter ./packages run build",
+    "build": "pnpm -r run build",
     "test": "pnpm -r test run",
     "lint": "pnpm eslint '**/*.{js,ts,tsx,json}'",
     "lint:fix": "pnpm eslint '**/*.{js,ts,tsx,json}' --fix",
-    "publish:ci": "pnpm -r --filter ./packages publish --access public --no-git-checks",
+    "publish:ci": "pnpm -r publish --access public --no-git-checks",
     "release": "pnpm bumpp package.json packages/*/package.json --commit --tag --push"
   },
   "publishConfig": {
