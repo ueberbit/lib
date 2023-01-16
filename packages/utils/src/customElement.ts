@@ -172,8 +172,13 @@ export abstract class CE extends HTMLElement {
 
   connectedCallback() {
     JSX.append(this.render(), this.renderRoot)
-    this.connected = true
+    if(!this.connected) {
+      this.connected = true
+      this.firstUpdated()
+    }
   }
+
+  firstUpdated(): void {}
 
   createRenderRoot(): ShadowRoot | HTMLElement {
     return this.attachShadow({ mode: 'open' })
@@ -203,7 +208,7 @@ export abstract class CE extends HTMLElement {
 
 declare global {
   interface CSSStyleSheet {
-    replaceSync: Function
+    replaceSync: (text: string) => void
     tagname: string
   }
 
