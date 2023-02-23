@@ -131,12 +131,13 @@ export const adoptStyles = (renderRoot: ShadowRoot | HTMLElement | Document, sty
     }
   } else {
     const style = document.createElement('style')
+    style.setAttribute('type', 'text/css')
     style.textContent = styles.join(' ')
 
     if (renderRoot instanceof HTMLElement) {
       // Skip if Styletag exists already.
-      if (document.querySelectorAll(`style[title=${renderRoot.tagName}]`).length) return
-      style.title = renderRoot.tagName
+      if (document.querySelectorAll(`style[id=${renderRoot.tagName}]`).length) return
+      style.id = renderRoot.tagName
       document.head.appendChild(style)
     } else {
       renderRoot.appendChild(style)
