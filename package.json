@@ -1,6 +1,6 @@
 {
   "name": "ue-lib",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "private": true,
   "description": "Collection of utils and components.",
   "license": "MIT",
